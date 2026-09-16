@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
  
-    [SerializeField] private float _moveSpeed = 10f;    // プレイヤーの移動量
+    [SerializeField] private float _moveSpeed = 1f;    // プレイヤーの移動量
 
     
     private PlayerInput _playerInput;   // プレイヤーインプット型(入力のイベントとかがくる)の
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.Player.Move.started += OnMove; // 押され始めたら呼び出されるイベントに登録する
         _playerInput.Player.Move.performed += OnMove;   // 押されているときに呼び出されるイベントに登録する
         _playerInput.Player.Move.canceled += OnMove;    // 話されたときの與羽出されるイベントに登録する
+
 
         // Input Actionを機能させる処理
         _playerInput.Enable(); // これを書かないとイベント事態が起きない。
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
+        
     }
 
     public void OnMove(InputAction.CallbackContext context) // (InputAction.CallbackContext型)
