@@ -53,7 +53,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
  
-public class Camera : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
 
     private GameObject mainCamera;              //メインカメラ格納用
@@ -64,7 +64,7 @@ public class Camera : MonoBehaviour
     void Start()
     {
         //メインカメラとユニティちゃんをそれぞれ取得
-        mainCamera = Camera.main.gameObject;
+        mainCamera = UnityEngine.Camera.main.gameObject;
         playerObject = GameObject.Find("unitychan");
     }
 
