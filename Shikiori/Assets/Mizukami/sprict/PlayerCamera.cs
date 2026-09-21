@@ -98,12 +98,15 @@ public class PlayerCamera : MonoBehaviour
     private void GetInputValue()
     {
         // 入力値を取得する
+        // データを入れる変数 = プレイヤーインプットクラスのカメラRotationの値を読む
         Vector2 rotationInputValue = _playerInput.Player.CameraRotation.ReadValue<Vector2>();
 
+        // _yAngleはy軸を横方向にぐるっと回る
         // X軸の入力でカメラをプレイヤーを中心にY軸回転させる。
         _yAngle -= rotationInputValue.x * rotateSpeed * Time.deltaTime;
         // Y軸の入力でカメラをプレイヤーを中心にX軸回転させる。
         _xAngle += rotationInputValue.y * rotateSpeed * Time.deltaTime;
+        // 
         // X軸の回転量を制限する。
         _xAngle = Mathf.Clamp(_xAngle, CLAMPED_X_ANGLE_MIN, CLAMPED_X_ANGLE_MAX);
 
