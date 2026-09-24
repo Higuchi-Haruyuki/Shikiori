@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+[CreateAssetMenu(fileName = "ItemCollectionState", menuName = "Scriptable Objects/ItemCollectionState")]
 public class ItemCollectionState: ScriptableObject
 {
     // 「合計何個拾ったか」を覚えておく
