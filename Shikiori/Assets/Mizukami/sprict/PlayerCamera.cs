@@ -55,15 +55,20 @@ public class PlayerCamera : MonoBehaviour
 
     private GameObject mainCamera;              //メインカメラ格納用
     private GameObject playerObject;            //回転の中心となるプレイヤー格納用
-    public float rotateSpeed = 2.0f;            //回転の速さ
+    public float rotateSpeed = 1.0f;            //回転の速さ
     [SerializeField] private float _playerCameraDistance = 10.0f;    // プレイヤーとカメラの距離
 
-    // Y軸回転量(ラジアン)
-    private float _yAngle = 0.0f;
+    // Y軸回転量(ラジアン)  // 1π = 180°
+    private float _yAngle = -Mathf.PI /2 ;  // 初期値より90°回したい
+
     // X軸回転量(ラジアン)
     private float _xAngle = 0.0f;
-    private const float CLAMPED_X_ANGLE_MIN = -Mathf.PI / 2.0f + 0.3f; // X軸回転量の最小値(ラジアン)
-    private const float CLAMPED_X_ANGLE_MAX = Mathf.PI / 2.0f - 0.3f; // X軸回転量の最大値(ラジアン)
+
+    // -Math.PI(-180°) / 2f = -90° + 0.3f(0.3* 1ラジアン(57°)) =  = -90°+ 17°  = およそ73°
+    // ラジアンで考えると... π/2 + 0.3 * 180 / π (π= 180°)
+    // つまり、1ラジアンの0.3倍分を計算している
+    private const float CLAMPED_X_ANGLE_MIN = -Mathf.PI / 2.0f + 1f; // X軸回転量の最小値(ラジアン)
+    private const float CLAMPED_X_ANGLE_MAX = Mathf.PI / 2.0f - 0.8f; // X軸回転量の最大値(ラジアン)
     private PlayerInput _playerInput;   // プレイヤーインプット型(入力のイベントとかがくる)
 
     private void Awake()
@@ -106,16 +111,22 @@ public class PlayerCamera : MonoBehaviour
         _yAngle -= rotationInputValue.x * rotateSpeed * Time.deltaTime;
         // Y軸の入力でカメラをプレイヤーを中心にX軸回転させる。
         _xAngle += rotationInputValue.y * rotateSpeed * Time.deltaTime;
-        // 
+        
+
         // X軸の回転量を制限する。
+        // Mathf.Clamp(現在の値, 最小値, 最大値)
+        // if (現在の値<最小値) 現在の値 = 最小値;    // みたいなやつ
         _xAngle = Mathf.Clamp(_xAngle, CLAMPED_X_ANGLE_MIN, CLAMPED_X_ANGLE_MAX);
 
     }
 
     private void FollowPlayer()
     {
+        // z…前後、x…左右、y…上下
         // プレイヤーの位置を原点と考える。
+        // Var … C++でいうautoと同じ
         var playerPos = playerObject.transform.position;
+        playerPos.y += 5f;
 
         // 基本的な考え方は、XZ平面の単位円とYZ平面の単位円を組み合わせて、
         // カメラとプレイヤーのオフセットを求める。
