@@ -6,6 +6,9 @@ TagManager:
   tags:
   - SeasonManager
   - Gimic
+  - Summer
+  - Winter
+  - None
   layers:
   - Default
   - TransparentFX

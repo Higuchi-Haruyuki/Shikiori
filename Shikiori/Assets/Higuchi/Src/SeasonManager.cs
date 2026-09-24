@@ -20,7 +20,7 @@ public class SeasonManager : MonoBehaviour
     /// 季節の遷移を定義する辞書
     /// 遷移元の季節をキーとして、遷移先の季節を値として設定
     /// </summary>
-    private Dictionary<GlobalSeason,GlobalSeason> _seasonTransition = new()
+    public readonly Dictionary<GlobalSeason,GlobalSeason> _seasonTransition = new()
     {
         { GlobalSeason.None, GlobalSeason.Summer },
         { GlobalSeason.Summer, GlobalSeason.Winter },
