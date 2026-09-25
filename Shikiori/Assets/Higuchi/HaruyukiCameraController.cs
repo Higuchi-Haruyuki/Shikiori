@@ -1,0 +1,117 @@
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class HaruyukiCameraController : MonoBehaviour
+{
+ 
+   private GameObject mainCamera;              //メインカメラ格納用
+    private GameObject playerObject;            //回転の中心となるプレイヤー格納用
+    public float rotateSpeed = 1.0f;            //回転の速さ
+    [SerializeField] private float _playerCameraDistance = 10.0f;    // プレイヤーとカメラの距離
+
+    [SerializeField] private float _cameraHeightOffset = 1.0f; // カメラの高さオフセット
+    // Y軸回転量(ラジアン)  // 1π = 180°
+    private float _yAngle = -Mathf.PI /2 ;  // 初期値より90°回したい
+
+    // X軸回転量(ラジアン)
+    private float _xAngle = 0.0f;
+
+    // -Math.PI(-180°) / 2f = -90° + 0.3f(0.3* 1ラジアン(57°)) =  = -90°+ 17°  = およそ73°
+    // ラジアンで考えると... π/2 + 0.3 * 180 / π (π= 180°)
+    // つまり、1ラジアンの0.3倍分を計算している
+    private const float CLAMPED_X_ANGLE_MIN = -Mathf.PI / 2.0f + 1f; // X軸回転量の最小値(ラジアン)
+    private const float CLAMPED_X_ANGLE_MAX = Mathf.PI / 2.0f - 0.8f; // X軸回転量の最大値(ラジアン)
+    private PlayerInput _playerInput;   // プレイヤーインプット型(入力のイベントとかがくる)
+
+    private void Awake()
+    {
+        _playerInput = new PlayerInput();
+
+       _playerInput.Enable();
+
+    }
+
+    //呼び出し時に実行される関数
+    void Start()
+    {
+        //メインカメラとプレイヤーをそれぞれ取得
+        mainCamera = Camera.main.gameObject;
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    // LateUpdate is called once per frame, after Update
+    private void LateUpdate()   // Updateの後にされるUpdate。
+    {
+        GetInputValue();
+        FollowPlayer();
+    }
+
+    private void OnDestroy()
+    {
+        _playerInput.Disable();
+    }
+
+
+    private void GetInputValue()
+    {
+        // 入力値を取得する
+        // データを入れる変数 = プレイヤーインプットクラスのカメラRotationの値を読む
+        Vector2 rotationInputValue = _playerInput.Player.CameraRotation.ReadValue<Vector2>();
+
+        // _yAngleはy軸を横方向にぐるっと回る
+        // X軸の入力でカメラをプレイヤーを中心にY軸回転させる。
+        _yAngle -= rotationInputValue.x * rotateSpeed * Time.deltaTime;
+        // Y軸の入力でカメラをプレイヤーを中心にX軸回転させる。
+        _xAngle += rotationInputValue.y * rotateSpeed * Time.deltaTime;
+        
+
+        // X軸の回転量を制限する。
+        // Mathf.Clamp(現在の値, 最小値, 最大値)
+        // if (現在の値<最小値) 現在の値 = 最小値;    // みたいなやつ
+        _xAngle = Mathf.Clamp(_xAngle, CLAMPED_X_ANGLE_MIN, CLAMPED_X_ANGLE_MAX);
+
+    }
+
+    private void FollowPlayer()
+    {
+        // z…前後、x…左右、y…上下
+        // プレイヤーの位置を原点と考える。
+        // Var … C++でいうautoと同じ
+        var playerPos = playerObject.transform.position;
+
+        playerPos.y += _cameraHeightOffset; // プレイヤーの位置に高さオフセットを加える。
+
+        // 基本的な考え方は、XZ平面の単位円とYZ平面の単位円を組み合わせて、
+        // カメラとプレイヤーのオフセットを求める。
+
+        // 横から見た(YZ平面)図: pitch(_xAngle)から「高さ」と「水平半径」を求める。
+        // 高さは sin(pitch)、水平半径は cos(pitch)。
+        var height = Mathf.Sin(_xAngle);
+
+        // X軸の回転量によってXZ平面上の水平半径が変化する。
+        var xzRadius = Mathf.Cos(_xAngle);
+
+        // 真上から見た(XZ平面)図: 水平半径をyaw(_yAngle)でX・Zに配分する。
+        // XもZも同じ水平半径を土台にしているので、どちらにもcos(pitch)がかかる。
+        var offsetX = xzRadius * Mathf.Cos(_yAngle);
+        var offsetZ = xzRadius * Mathf.Sin(_yAngle);
+
+        // 単位円(半径1)上でのオフセットがまとまったので、ベクトルにする。
+        var unitCameraOffset = new Vector3(offsetX, height, offsetZ);
+
+        // 今までは単位円(半径が1)での座標だったので、プレイヤーとカメラの距離を掛けて、カメラのオフセットを求める。
+        var cameraOffset = unitCameraOffset * _playerCameraDistance;
+
+        // プレイヤーの位置にカメラのオフセットを足すことで、カメラの位置を求める。
+        transform.position = playerPos + cameraOffset;
+
+        // カメラの向きは常にプレイヤーの位置を向くようにする。
+        // カメラ自体が回転する。
+        transform.LookAt(playerPos);
+
+        //意味わからんならこれ読め
+        //https://claude.ai/artifact/5A55UVemuydxiYXegrt9sS
+
+    }
+}

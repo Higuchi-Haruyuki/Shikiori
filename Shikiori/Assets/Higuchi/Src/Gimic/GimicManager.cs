@@ -1,11 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GimicManager : MonoBehaviour
 {
     [SerializeField] private string _gimicTag = "Gimic";
     [SerializeField] private string _seasonManagerTag = "SeasonManager";
     private SeasonManager _seasonManager;
-
 
     void SubcribeToSeasonChange()
     {
