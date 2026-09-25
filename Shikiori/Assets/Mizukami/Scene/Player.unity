@@ -128,6 +128,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: deafb1f006f1bef4f8e2ffd3e289d970, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: deafb1f006f1bef4f8e2ffd3e289d970, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: deafb1f006f1bef4f8e2ffd3e289d970, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: deafb1f006f1bef4f8e2ffd3e289d970, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -455,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Camera
   rotateSpeed: 10
-  _playerCameraDistance: 10
+  _playerCameraDistance: 1
 --- !u!1 &1513953644
 GameObject:
   m_ObjectHideFlags: 0

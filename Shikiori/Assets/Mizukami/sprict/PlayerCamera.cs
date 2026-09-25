@@ -56,13 +56,13 @@ public class PlayerCamera : MonoBehaviour
     private GameObject mainCamera;              //メインカメラ格納用
     private GameObject playerObject;            //回転の中心となるプレイヤー格納用
     public float rotateSpeed = 1.0f;            //回転の速さ
-    [SerializeField] private float _playerCameraDistance = 10.0f;    // プレイヤーとカメラの距離
+    [SerializeField] private float _playerCameraDistance = 1.0f;    // プレイヤーとカメラの距離
 
     // Y軸回転量(ラジアン)  // 1π = 180°
     private float _yAngle = -Mathf.PI /2 ;  // 初期値より90°回したい
 
     // X軸回転量(ラジアン)
-    private float _xAngle = 0.0f;
+    private float _xAngle = Mathf.PI /4 - 0.3f;
 
     // -Math.PI(-180°) / 2f = -90° + 0.3f(0.3* 1ラジアン(57°)) =  = -90°+ 17°  = およそ73°
     // ラジアンで考えると... π/2 + 0.3 * 180 / π (π= 180°)
@@ -70,6 +70,8 @@ public class PlayerCamera : MonoBehaviour
     private const float CLAMPED_X_ANGLE_MIN = -Mathf.PI / 2.0f + 1f; // X軸回転量の最小値(ラジアン)
     private const float CLAMPED_X_ANGLE_MAX = Mathf.PI / 2.0f - 0.8f; // X軸回転量の最大値(ラジアン)
     private PlayerInput _playerInput;   // プレイヤーインプット型(入力のイベントとかがくる)
+
+   
 
     private void Awake()
     {
@@ -85,6 +87,11 @@ public class PlayerCamera : MonoBehaviour
         //メインカメラとプレイヤーをそれぞれ取得
         mainCamera = Camera.main.gameObject;
         playerObject = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     // LateUpdate is called once per frame, after Update
@@ -126,7 +133,8 @@ public class PlayerCamera : MonoBehaviour
         // プレイヤーの位置を原点と考える。
         // Var … C++でいうautoと同じ
         var playerPos = playerObject.transform.position;
-        playerPos.y += 5f;
+        playerPos.z -= 0.1f;
+        playerPos.y += 0.51f;
 
         // 基本的な考え方は、XZ平面の単位円とYZ平面の単位円を組み合わせて、
         // カメラとプレイヤーのオフセットを求める。
