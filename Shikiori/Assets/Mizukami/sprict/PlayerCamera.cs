@@ -49,20 +49,39 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
- 
+using UnityEngine.Serialization;
+
 public class PlayerCamera : MonoBehaviour
 {
 
     private GameObject mainCamera;              //メインカメラ格納用
     private GameObject playerObject;            //回転の中心となるプレイヤー格納用
-    public float rotateSpeed = 1.0f;            //回転の速さ
+
+    //[FormerlySerializedAs("rotateSpeed")]
+    [SerializeField] private float _rotateSpeed = 1.0f;            //回転の速さ
     [SerializeField] private float _playerCameraDistance = 1.0f;    // プレイヤーとカメラの距離
 
+    [SerializeField] private float _rotationSharpness = 12.0f;  // 回転の追いつきの速さ
+    [SerializeField] private float _followSharpness = 10.0f;    // 移動の追いつきの速さ
+
+
+
+    // 入力で決まる目標の角度
+    // 入力はこっちに入るが、カメラはまだ動かない。
+
     // Y軸回転量(ラジアン)  // 1π = 180°
-    private float _yAngle = -Mathf.PI /2 ;  // 初期値より90°回したい
+    private float _targetYAngle = -Mathf.PI /2 ;  // 初期値より90°回したい
+    //private float _yAngle = -Mathf.PI / 2;  // 初期値より90°回したい
 
     // X軸回転量(ラジアン)
-    private float _xAngle = Mathf.PI /4 - 0.3f;
+    private float _targetXAngle = Mathf.PI /4 - 0.3f;
+
+    // カメラが実際に使う角度(カメラを動かすための変数)
+
+    private float _yAngle = -Mathf.PI / 2.0f;
+    private float _xAngle = 0.0f;
+
+    private Vector3 _smoothedPivot;
 
     // -Math.PI(-180°) / 2f = -90° + 0.3f(0.3* 1ラジアン(57°)) =  = -90°+ 17°  = およそ73°
     // ラジアンで考えると... π/2 + 0.3 * 180 / π (π= 180°)
@@ -70,6 +89,7 @@ public class PlayerCamera : MonoBehaviour
     private const float CLAMPED_X_ANGLE_MIN = -Mathf.PI / 2.0f + 1f; // X軸回転量の最小値(ラジアン)
     private const float CLAMPED_X_ANGLE_MAX = Mathf.PI / 2.0f - 0.8f; // X軸回転量の最大値(ラジアン)
     private PlayerInput _playerInput;   // プレイヤーインプット型(入力のイベントとかがくる)
+
 
    
 
@@ -97,8 +117,9 @@ public class PlayerCamera : MonoBehaviour
     // LateUpdate is called once per frame, after Update
     private void LateUpdate()   // Updateの後にされるUpdate。
     {
-        GetInputValue();
-        FollowPlayer();
+        GetInputValue();    // 入力 -> 目標
+        SmoothValues();     // 現在 -> 目標へ寄せる
+        FollowPlayer();     // 現在の値でカメラを置く
     }
 
     private void OnDestroy()
@@ -113,17 +134,22 @@ public class PlayerCamera : MonoBehaviour
         // データを入れる変数 = プレイヤーインプットクラスのカメラRotationの値を読む
         Vector2 rotationInputValue = _playerInput.Player.CameraRotation.ReadValue<Vector2>();
 
+
+
+
         // _yAngleはy軸を横方向にぐるっと回る
         // X軸の入力でカメラをプレイヤーを中心にY軸回転させる。
-        _yAngle -= rotationInputValue.x * rotateSpeed * Time.deltaTime;
+        _targetYAngle -= rotationInputValue.x * _rotateSpeed * Time.deltaTime;
+        //_yAngle -= rotationInputValue.x * _rotateSpeed * Time.deltaTime;
+
         // Y軸の入力でカメラをプレイヤーを中心にX軸回転させる。
-        _xAngle += rotationInputValue.y * rotateSpeed * Time.deltaTime;
+        _targetXAngle += rotationInputValue.y * _rotateSpeed * Time.deltaTime;
         
 
         // X軸の回転量を制限する。
         // Mathf.Clamp(現在の値, 最小値, 最大値)
         // if (現在の値<最小値) 現在の値 = 最小値;    // みたいなやつ
-        _xAngle = Mathf.Clamp(_xAngle, CLAMPED_X_ANGLE_MIN, CLAMPED_X_ANGLE_MAX);
+        _targetXAngle = Mathf.Clamp(_targetXAngle, CLAMPED_X_ANGLE_MIN, CLAMPED_X_ANGLE_MAX);
 
     }
 
@@ -141,15 +167,15 @@ public class PlayerCamera : MonoBehaviour
 
         // 横から見た(YZ平面)図: pitch(_xAngle)から「高さ」と「水平半径」を求める。
         // 高さは sin(pitch)、水平半径は cos(pitch)。
-        var height = Mathf.Sin(_xAngle);
+        var height = Mathf.Sin(_targetXAngle);
 
         // X軸の回転量によってXZ平面上の水平半径が変化する。
-        var xzRadius = Mathf.Cos(_xAngle);
+        var xzRadius = Mathf.Cos(_targetXAngle);
 
         // 真上から見た(XZ平面)図: 水平半径をyaw(_yAngle)でX・Zに配分する。
         // XもZも同じ水平半径を土台にしているので、どちらにもcos(pitch)がかかる。
-        var offsetX = xzRadius * Mathf.Cos(_yAngle);
-        var offsetZ = xzRadius * Mathf.Sin(_yAngle);
+        var offsetX = xzRadius * Mathf.Cos(_targetYAngle);
+        var offsetZ = xzRadius * Mathf.Sin(_targetYAngle);
 
         // 単位円(半径1)上でのオフセットがまとまったので、ベクトルにする。
         var unitCameraOffset = new Vector3(offsetX, height, offsetZ);
@@ -168,4 +194,12 @@ public class PlayerCamera : MonoBehaviour
         //https://claude.ai/artifact/5A55UVemuydxiYXegrt9sS
 
     }
+
+    private void SmoothValues()
+    {
+        float ratationT = CalcSmoothT(_rotationSharpness);
+        _yAngle = Mathf.Lerp(_yAngle, _targetYAngle, rotationT);
+        _smoothedPivot = Vector3.Lerp(_smoothedPivot,GetTarGetPivot(),followT):
+    }
+
 }
