@@ -197,9 +197,37 @@ public class PlayerCamera : MonoBehaviour
 
     private void SmoothValues()
     {
-        float ratationT = CalcSmoothT(_rotationSharpness);
-        _yAngle = Mathf.Lerp(_yAngle, _targetYAngle, rotationT);
-        _smoothedPivot = Vector3.Lerp(_smoothedPivot,GetTarGetPivot(),followT):
+        // このフレームで「残り何割」近づくか
+        float rotationT = CalcSmoothT(_rotationSharpness);
+        // 現在の角度を目標に、rotationTの割合だけ近づける
+        _yAngle = Mathf.Lerp(_yAngle, _targetYAngle, rotationT);    // _yAngle + (_targetYAngle - _yAngle) * rotationT
+        _xAngle = Mathf.Lerp(_xAngle, _targetXAngle, rotationT);
+
+        // 中心点も同じように、プレイヤー位置へ近づける
+        float followT = CalcSmoothT(_followSharpness);
+        _smoothedPivot = Vector3.Lerp(_smoothedPivot, GetTargetPivot(), followT);
+
+    }
+
+    
+
+    private static float CalcSmoothT(float sharpness)
+    {
+        // 1- (このフレーム後に残る割合) = このフレームで縮める割合
+        return 1.0f - Mathf.Exp(-sharpness * Time.deltaTime);
+        // return で返される値はこのフレームでどのぐらい(%)で縮めるか
+        // sharpness=15かつ60fpsだとする。
+        // まず、Time.deltaTimeは1/60である。約0.0167秒
+        // -sharpness * Time.deltaTime = 15*0.0167 = 0.25   // 全体で15の鋭さで動くとしたら、15*1/60分
+        // Exc(0.25) = 0.779 -> このフレームが終わったら残り縮める%が77.9%になる
+        // 1-0.779 = 0.221 -> このフレームで残り22.9%縮める
+    }
+
+    private Vector3 GetTargetPivot()
+    {
+        Vector3 pivot = playerObject.transform.position;    // プレイヤー位置をコピー
+        pivot.y += _playerCameraDistance;                   // コピーの高さをあげる
+        return pivot;
     }
 
 }
