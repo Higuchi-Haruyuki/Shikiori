@@ -15,6 +15,7 @@ public class ItemCollectionState: ScriptableObject
     public void Collect(ItemData itemData)
     {
         _collectedCount += itemData.ScoreValue;
+        ItemCountMover.SaveItemCount(_collectedCount);
     }
 
     // 今の合計数を教えてあげる
