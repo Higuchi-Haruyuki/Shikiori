@@ -28,15 +28,14 @@ public class ItemRotation : MonoBehaviour
         // 回転
         transform.Rotate(Vector3.up, m_rotationSpeed * Time.deltaTime);
 
-        // 上下運動
+        //---上下運動---
+        // 1秒間に何往復するかから、1秒間に何ラジアン進むかを計算する
         float wave = Time.time * m_bobFrequency * Mathf.PI * 2.0f;
 
-
+        // -0.25~0.25の範囲で上下運動するようにする
         float offsetY = Mathf.Sin(wave) * m_bobHeight;
-        // このフレームで回す角度
-       // float angle = m_rotationSpeed * Time.deltaTime;
-
-        // Vector3.upを軸にして、angle度だけ回す
-        //transform.Rotate(Vector3.up, angle);
+        
+        // 元の位置に上下のずれを足した場所に置く
+        transform.localPosition = m_startLocalPosition + new Vector3(0.0f, offsetY, 0.0f);
     }
 }
