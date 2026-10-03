@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 /// <summary>
 /// アイテム数を保存・ロードするためのクラス
@@ -6,7 +7,8 @@ using UnityEngine;
 public static class ItemCountMover
 {
     private static readonly string ITEM_COUNT_KEY = "ItemCount";
-    
+    private static readonly int ITEM_CLEAR_COUNT = 4; // アイテムクリアの条件となる数
+    public static Action OnReachedItemClearCount;
     /// <summary>
     /// アイテム数を保存する
     /// </summary>
@@ -15,6 +17,15 @@ public static class ItemCountMover
     {
         PlayerPrefs.SetInt(ITEM_COUNT_KEY, count);
         PlayerPrefs.Save();
+        Debug.Log($"アイテム数を保存しました: {count}");
+
+        // アイテム数がクリア条件に達した場合、イベントを発火
+        if (count >= ITEM_CLEAR_COUNT)
+        {
+            OnReachedItemClearCount?.Invoke();
+            Debug.Log("アイテム数がクリア条件に達しました。");
+            OnReachedItemClearCount = null; // イベントを解除して再度発火しないようにする
+        }
     }
 
     /// <summary>
