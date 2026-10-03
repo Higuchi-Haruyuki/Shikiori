@@ -15,7 +15,7 @@ public class ItemRotation : MonoBehaviour
     private Vector3 m_startLocalPosition;
 
     // ゲーム開始時に一度だけ呼ばれる
-    private void Awkae()
+    private void Awake()
     {
         // 最初の位置を覚えておく(中心位置)
         m_startLocalPosition = transform.localPosition;
