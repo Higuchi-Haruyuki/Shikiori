@@ -9,6 +9,7 @@ public static class ItemCountMover
     private static readonly string ITEM_COUNT_KEY = "ItemCount";
     private static readonly int ITEM_CLEAR_COUNT = 4; // アイテムクリアの条件となる数
     public static Action OnReachedItemClearCount;
+    public static Action OnItemCountChanged;
     /// <summary>
     /// アイテム数を保存する
     /// </summary>
@@ -25,6 +26,12 @@ public static class ItemCountMover
             OnReachedItemClearCount?.Invoke();
             Debug.Log("アイテム数がクリア条件に達しました。");
             OnReachedItemClearCount = null; // イベントを解除して再度発火しないようにする
+            OnItemCountChanged = null; // アイテム数変更イベントも解除
+        }
+        else
+        {
+            OnItemCountChanged?.Invoke();
+            Debug.Log("アイテム数が変更されました。");
         }
     }
 
