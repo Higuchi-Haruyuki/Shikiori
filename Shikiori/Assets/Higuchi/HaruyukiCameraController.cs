@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 
 public class HaruyukiCameraController : MonoBehaviour
 {
- 
-   private GameObject mainCamera;              //メインカメラ格納用
+    [SerializeField] private GameObject _followCamera;              //追従カメラ
     private GameObject playerObject;            //回転の中心となるプレイヤー格納用
     public float rotateSpeed = 1.0f;            //回転の速さ
     [SerializeField] private float _playerCameraDistance = 10.0f;    // プレイヤーとカメラの距離
@@ -36,7 +35,7 @@ public class HaruyukiCameraController : MonoBehaviour
     void Start()
     {
         //メインカメラとプレイヤーをそれぞれ取得
-        mainCamera = Camera.main.gameObject;
+        _followCamera = Camera.main.gameObject;
         playerObject = GameObject.FindGameObjectWithTag("Player");
     }
 
