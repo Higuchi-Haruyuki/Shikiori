@@ -7,6 +7,9 @@ public class GateController : MonoBehaviour
     bool isGateOpening = false;
     float _openTimer = 0.0f;
 
+    private float _openWaitTimer = 0.0f; // ゲートが開くまでの待機時間
+    private float _openWaitDuration = 2.0f; // ゲートが開くまでの待機時間（1秒）
+
     void OnEnable()
     {
         ItemCountMover.OnReachedItemClearCount += HandleItemClearCountReached;
@@ -26,6 +29,13 @@ public class GateController : MonoBehaviour
         }
 
         if(!isGateOpening) return;
+
+        if (_openWaitTimer < _openWaitDuration) // _openWaitDuration秒待機
+        {
+            _openWaitTimer += Time.deltaTime;
+            return; // 待機時間中はゲートの開閉処理を行わない
+        }
+
         // ゲートが開くアニメーション
         var targetYRotation = Quaternion.Euler(0, -90, 0); // 目標の回転角度
         _openTimer += Time.deltaTime;
