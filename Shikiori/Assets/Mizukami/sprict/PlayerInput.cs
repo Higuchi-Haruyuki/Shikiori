@@ -109,6 +109,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Cry"",
+                    ""type"": ""Button"",
+                    ""id"": ""dcb221f1-9ae6-4836-8f9e-2cad9ba7da88"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dush"",
+                    ""type"": ""Button"",
+                    ""id"": ""ccbb53eb-ec82-4ec9-b0b8-8624586b3c73"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -243,6 +261,61 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""CameraRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d310f809-2f91-4b62-a77b-5fa61c5e52ba"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""174a2c6c-4a59-4f46-88d1-f97ac718438c"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c5ae179-8fcc-48e6-9cb8-88a60091071a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31f3783b-2458-4c92-9577-642e7c118e9c"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dush"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""01d7cdd1-50eb-4bb8-b053-9856b4635154"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dush"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -292,6 +365,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_CameraRotation = m_Player.FindAction("CameraRotation", throwIfNotFound: true);
+        m_Player_Cry = m_Player.FindAction("Cry", throwIfNotFound: true);
+        m_Player_Dush = m_Player.FindAction("Dush", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Rotation = m_Camera.FindAction("Rotation", throwIfNotFound: true);
@@ -378,6 +453,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_CameraRotation;
+    private readonly InputAction m_Player_Cry;
+    private readonly InputAction m_Player_Dush;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -397,6 +474,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/CameraRotation".
         /// </summary>
         public InputAction @CameraRotation => m_Wrapper.m_Player_CameraRotation;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Cry".
+        /// </summary>
+        public InputAction @Cry => m_Wrapper.m_Player_Cry;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Dush".
+        /// </summary>
+        public InputAction @Dush => m_Wrapper.m_Player_Dush;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -429,6 +514,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CameraRotation.started += instance.OnCameraRotation;
             @CameraRotation.performed += instance.OnCameraRotation;
             @CameraRotation.canceled += instance.OnCameraRotation;
+            @Cry.started += instance.OnCry;
+            @Cry.performed += instance.OnCry;
+            @Cry.canceled += instance.OnCry;
+            @Dush.started += instance.OnDush;
+            @Dush.performed += instance.OnDush;
+            @Dush.canceled += instance.OnDush;
         }
 
         /// <summary>
@@ -446,6 +537,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CameraRotation.started -= instance.OnCameraRotation;
             @CameraRotation.performed -= instance.OnCameraRotation;
             @CameraRotation.canceled -= instance.OnCameraRotation;
+            @Cry.started -= instance.OnCry;
+            @Cry.performed -= instance.OnCry;
+            @Cry.canceled -= instance.OnCry;
+            @Dush.started -= instance.OnDush;
+            @Dush.performed -= instance.OnDush;
+            @Dush.canceled -= instance.OnDush;
         }
 
         /// <summary>
@@ -596,6 +693,20 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCameraRotation(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cry" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCry(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Dush" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDush(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Camera" which allows adding and removing callbacks.
