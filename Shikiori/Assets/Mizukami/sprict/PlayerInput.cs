@@ -298,7 +298,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""31f3783b-2458-4c92-9577-642e7c118e9c"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
