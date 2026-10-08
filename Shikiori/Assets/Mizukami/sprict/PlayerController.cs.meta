@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 0c1ebe9e40db8564b9dfb9faec63bc07
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cameraTransform: {instanceID: 0}
+  - seCry1: {instanceID: 0}
+  - seCry2: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

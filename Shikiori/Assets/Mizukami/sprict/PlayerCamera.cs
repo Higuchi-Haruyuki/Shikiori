@@ -64,7 +64,14 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float _rotationSharpness = 12.0f;  // 回転の追いつきの速さ
     [SerializeField] private float _followSharpness = 10.0f;    // 移動の追いつきの速さ
 
+    [Header("壁ののめりこみ防止")]
+    // ~0の~はビット反転演算子であり、0ビットを反転する   
+    [SerializeField] private LayerMask _collisionLayers = ~0;   // カメラが避けるレイヤー(Player自身は除外推奨)
+    [SerializeField] private float _collisionRadius = 0.2f;     // カメラの当たり判定の半径
+    [SerializeField] private float _minDistance = 0.3f;         // 近づける限界の距離
+    [SerializeField] private float _collisionRecoverSharpness = 6.0f;   // 壁から離れた時に」元の距離へ戻る速さ
 
+    private float _currentDistance; // 実際に使うカメラ距離
 
     // 入力で決まる目標の角度
     // 入力はこっちに入るが、カメラはまだ動かない。
@@ -107,6 +114,10 @@ public class PlayerCamera : MonoBehaviour
         //メインカメラとプレイヤーをそれぞれ取得
         mainCamera = Camera.main.gameObject;
         playerObject = GameObject.FindGameObjectWithTag("Player");
+        _currentDistance = _playerCameraDistance;
+
+        _xAngle = _targetXAngle;
+        _yAngle = _targetYAngle;
     }
 
     private void FixedUpdate()
@@ -167,21 +178,49 @@ public class PlayerCamera : MonoBehaviour
 
         // 横から見た(YZ平面)図: pitch(_xAngle)から「高さ」と「水平半径」を求める。
         // 高さは sin(pitch)、水平半径は cos(pitch)。
-        var height = Mathf.Sin(_targetXAngle);
+        var height = Mathf.Sin(_xAngle);
 
         // X軸の回転量によってXZ平面上の水平半径が変化する。
-        var xzRadius = Mathf.Cos(_targetXAngle);
+        var xzRadius = Mathf.Cos(_xAngle);
 
         // 真上から見た(XZ平面)図: 水平半径をyaw(_yAngle)でX・Zに配分する。
         // XもZも同じ水平半径を土台にしているので、どちらにもcos(pitch)がかかる。
-        var offsetX = xzRadius * Mathf.Cos(_targetYAngle);
-        var offsetZ = xzRadius * Mathf.Sin(_targetYAngle);
+        var offsetX = xzRadius * Mathf.Cos(_yAngle);
+        var offsetZ = xzRadius * Mathf.Sin(_yAngle);
 
         // 単位円(半径1)上でのオフセットがまとまったので、ベクトルにする。
-        var unitCameraOffset = new Vector3(offsetX, height, offsetZ);
+        // 単位ベクトル(プレイヤー->カメラの方向)
+        var direction = new Vector3(offsetX, height, offsetZ).normalized;
 
-        // 今までは単位円(半径が1)での座標だったので、プレイヤーとカメラの距離を掛けて、カメラのオフセットを求める。
-        var cameraOffset = unitCameraOffset * _playerCameraDistance;
+        // ここから壁判定
+        float targetDistance = _playerCameraDistance;
+
+        if (Physics.SphereCast(
+            playerPos,              // 始点(プレイヤー)
+            _collisionRadius,       // 球の半径
+            direction,              // カメラへ向かう方向
+            out RaycastHit hit,
+            _playerCameraDistance,  // 最大距離
+            _collisionLayers,
+            QueryTriggerInteraction.Ignore
+            ))
+        {
+            // 壁の手前までに縮める(最低距離は確保)
+            targetDistance = Mathf.Max(hit.distance,_minDistance);
+        }
+
+        if (targetDistance < _currentDistance)
+        {
+            _currentDistance = targetDistance;  // 即座に縮める(めり込み防止を優先)
+        }
+        else
+        {
+            float t = CalcSmoothT(_collisionRecoverSharpness);
+            _currentDistance = Mathf.Lerp(_currentDistance, targetDistance, t);
+        }
+
+            // 今までは単位円(半径が1)での座標だったので、プレイヤーとカメラの距離を掛けて、カメラのオフセットを求める。
+            var cameraOffset = direction * _currentDistance;
 
         // プレイヤーの位置にカメラのオフセットを足すことで、カメラの位置を求める。
         transform.position = playerPos + cameraOffset;
