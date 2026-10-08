@@ -44,7 +44,6 @@ public class ItemCollectLamp : MonoBehaviour
                 _waitTimer += Time.deltaTime;
                 return; // 待機時間中はフェード処理を行わない
             }
-            Debug.Log($"LampOn: _fadeTimer={_fadeTimer}, _fadeDuration={_fadeDuration}");
             _fadeTimer += Time.deltaTime;
             if (_fadeTimer >= _fadeDuration)
             {
@@ -59,7 +58,6 @@ public class ItemCollectLamp : MonoBehaviour
         }
         if(_isFadeOff)
         {
-            Debug.Log($"LampOff: _fadeTimer={_fadeTimer}, _fadeDuration={_fadeDuration}");
             _fadeTimer -= Time.deltaTime;
             if (_fadeTimer <= 0.0f)
             {
@@ -85,7 +83,6 @@ public class ItemCollectLamp : MonoBehaviour
     {
         if (_originalMaterial != null)
         {
-            Debug.Log($"SetEmissionIntensity: intensity={intensity}, emissionColor={_baseEmissionColor * intensity}");
             _originalMaterial.SetColor(EmissionColorId, _baseEmissionColor * intensity);
         }
     }

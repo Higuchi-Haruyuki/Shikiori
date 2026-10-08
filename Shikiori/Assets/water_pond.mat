@@ -54,7 +54,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _amplitude_: 0.2
-    - _waveScale_: 12.33
+    - _waveScale_: 40
     m_Colors:
     - _IceColor_: {r: 0.8915094, g: 1, b: 1, a: 1}
     - _baseColor_: {r: 0.47058815, g: 0.7333333, b: 0.6901961, a: 1}

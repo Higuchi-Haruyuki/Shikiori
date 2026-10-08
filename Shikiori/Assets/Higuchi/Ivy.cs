@@ -1,19 +1,18 @@
-using System.Linq;
 using UnityEngine;
-using System.Collections.Generic;
 
-public class SnowWall : MonoBehaviour, IGimic
+public class Ivy : MonoBehaviour,IGimic
 {
-     [SerializeField] private Collider _collider;
+    [SerializeField] private Collider _collider;
     [SerializeField] private Renderer _renderer;
-    [SerializeField] private GlobalSeason _activeSeason = GlobalSeason.Winter;
-    [SerializeField] private float _fadeTime = 2.0f;
+    [SerializeField] private GlobalSeason _activeSeason = GlobalSeason.Summer;
+    [SerializeField] private float _fadeTime = 3.0f;
     private bool _isFadeIn = false;
     private bool _isFadeOut = false;
     private float _fadeTimer = 0.0f;
 
     private Material _originalMaterial;
-    private readonly int _baseColorID = Shader.PropertyToID("_BaseColor");
+    private readonly int _surfaceTypeID = Shader.PropertyToID("_Surface");
+    private readonly int _baseColorID = Shader.PropertyToID("baseColorFactor");
 
     public void OnSeasonChanged(GlobalSeason oldSeason, GlobalSeason newSeason)
     {
@@ -50,7 +49,7 @@ public class SnowWall : MonoBehaviour, IGimic
         _originalMaterial.SetColor(_baseColorID, baseColor);
 
         // 半分より薄くなったら影を消し、濃くなったら影を戻す。
-        _renderer.shadowCastingMode = alpha < 0.8f 
+        _renderer.shadowCastingMode = alpha < 0.5f 
             ? UnityEngine.Rendering.ShadowCastingMode.Off
             :UnityEngine.Rendering.ShadowCastingMode.On;
 
@@ -60,11 +59,18 @@ public class SnowWall : MonoBehaviour, IGimic
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(!_collider) _collider = GetComponent<Collider>();
-        if(!_renderer) _renderer = GetComponent<Renderer>();
-        if(!_collider) Debug.LogError("SnowWall: Collider がないです。");
-        if(!_renderer) Debug.LogError("SnowWall: Renderer がないです。");
         _originalMaterial = _renderer.material;
+
+        _originalMaterial.SetFloat(_surfaceTypeID,1);
+        _originalMaterial.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+        // 色のブレンドモードを変更する。
+        _originalMaterial.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        _originalMaterial.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        // 深度を書き込まない。
+        _originalMaterial.SetFloat("_ZWrite", 0);
+        // 描画順を透明グループにする。
+        _originalMaterial.SetOverrideTag("RenderType", "Transparent");
+        _originalMaterial.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
     }
 
     // Update is called once per frame
@@ -91,5 +97,4 @@ public class SnowWall : MonoBehaviour, IGimic
             }
         }
     }
-
 }
