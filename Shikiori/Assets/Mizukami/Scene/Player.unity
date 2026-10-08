@@ -550,6 +550,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cat
       objectReference: {fileID: 0}
+    - target: {fileID: 8011607334383722915, guid: fbfbb11866a5673409889820f2a720a7, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1503257409}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
