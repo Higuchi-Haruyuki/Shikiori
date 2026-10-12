@@ -1,0 +1,317 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4711065604775090679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8983555726804931555}
+  m_Layer: 0
+  m_Name: ChangeSeasonBars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8983555726804931555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4711065604775090679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 553474947287982293}
+  - {fileID: 2306050133400682441}
+  - {fileID: 1592962435750535032}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7314698926133365517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553474947287982293}
+  m_Layer: 0
+  m_Name: ChangeSeasonBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &553474947287982293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314698926133365517}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2225872116742022903}
+  - {fileID: 8872711989727906356}
+  m_Father: {fileID: 8983555726804931555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &312618086507467646
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8983555726804931555}
+    m_Modifications:
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934003842159207859, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_Name
+      value: ChangeSeasonBar (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+--- !u!4 &2306050133400682441 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+  m_PrefabInstance: {fileID: 312618086507467646}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3624640117937189839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8983555726804931555}
+    m_Modifications:
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.068795905
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934003842159207859, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_Name
+      value: ChangeSeasonBar (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+--- !u!4 &1592962435750535032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+  m_PrefabInstance: {fileID: 3624640117937189839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4230563381849868864
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 553474947287982293}
+    m_Modifications:
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6762714
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934003842159207859, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_Name
+      value: ChangeSeasonBar (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+--- !u!4 &2225872116742022903 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+  m_PrefabInstance: {fileID: 4230563381849868864}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6878171549650773635
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 553474947287982293}
+    m_Modifications:
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934003842159207859, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+      propertyPath: m_Name
+      value: ChangeSeasonBar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+--- !u!4 &8872711989727906356 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2618306753027452087, guid: de70963abd330814e8e1c8d0084f56bf, type: 3}
+  m_PrefabInstance: {fileID: 6878171549650773635}
+  m_PrefabAsset: {fileID: 0}
