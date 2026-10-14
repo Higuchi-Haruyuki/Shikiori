@@ -385,6 +385,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLookAt
   LookAtOffset: {x: 0, y: 0.5, z: -0.3}
+--- !u!1001 &156399982
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 860283012259128370, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_Name
+      value: SeasonManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.336
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.038
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.4224
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455936442741594112, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
 --- !u!1 &347499795
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +608,18 @@ PrefabInstance:
       value: Cat
       objectReference: {fileID: 0}
     - target: {fileID: 8011607334383722915, guid: fbfbb11866a5673409889820f2a720a7, type: 3}
+      propertyPath: seWalk
+      value: 
+      objectReference: {fileID: 8300000, guid: cb3b4ae7c7de8eb4fb36d17f9ffd88b5, type: 3}
+    - target: {fileID: 8011607334383722915, guid: fbfbb11866a5673409889820f2a720a7, type: 3}
+      propertyPath: seWalkWinter
+      value: 
+      objectReference: {fileID: 8300000, guid: 25b2a18f4261ea244ae7535d27cceb0a, type: 3}
+    - target: {fileID: 8011607334383722915, guid: fbfbb11866a5673409889820f2a720a7, type: 3}
+      propertyPath: seasonManager
+      value: 
+      objectReference: {fileID: 523510418}
+    - target: {fileID: 8011607334383722915, guid: fbfbb11866a5673409889820f2a720a7, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1503257409}
@@ -559,6 +628,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbfbb11866a5673409889820f2a720a7, type: 3}
+--- !u!114 &523510418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4320964624909182614, guid: 846b2ae48bfda364981b2e6338349463, type: 3}
+  m_PrefabInstance: {fileID: 156399982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217f9127955340941899d527f511d1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeasonManager
 --- !u!1001 &613271151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,8 +957,11 @@ MonoBehaviour:
   _rotationSpeed: 1
   cameraTransform: {fileID: 0}
   _rotationSharpness: 10
+  seasonManager: {fileID: 0}
   seCry1: {fileID: 0}
   seCry2: {fileID: 0}
+  seWalk: {fileID: 0}
+  seWalkWinter: {fileID: 0}
 --- !u!1 &1503257406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,8 +1301,11 @@ MonoBehaviour:
   _rotationSpeed: 1
   cameraTransform: {fileID: 1503257409}
   _rotationSharpness: 10
+  seasonManager: {fileID: 0}
   seCry1: {fileID: 0}
   seCry2: {fileID: 0}
+  seWalk: {fileID: 0}
+  seWalkWinter: {fileID: 0}
 --- !u!136 &1940994493
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1301,3 +1387,4 @@ SceneRoots:
   - {fileID: 347499799}
   - {fileID: 99634414}
   - {fileID: 376666865}
+  - {fileID: 156399982}

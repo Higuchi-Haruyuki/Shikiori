@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _rotationSharpness = 10.0f;   // どのぐらいの鋭さか(動きのキビキビさ)
 
+    [SerializeField] private SeasonManager seasonManager;
+
     // 猫が動けるかどうかのフラグ
     private bool _isCanMove = true;
 
@@ -22,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     private Animator _anime;
 
+    private float _seWalkInterval = 1.5f;
+    private float _seLastPlayTime;
+
     Vector3 _movementtarget; // 回転の終着地
 
     Vector3 _movement;   // キャラクターを動かすための変数
@@ -30,6 +35,8 @@ public class PlayerController : MonoBehaviour
     // 音声
     public AudioClip seCry1;
     public AudioClip seCry2;
+    public AudioClip seWalk;
+    public AudioClip seWalkWinter;
     AudioSource audioSource;
 
     
@@ -67,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
         // Componentを取得
         audioSource = GetComponent<AudioSource>();
-
+        _seLastPlayTime = -_seWalkInterval;
     }
 
     // Update is called once per frame
@@ -149,6 +156,9 @@ public class PlayerController : MonoBehaviour
         {
 
             _anime.SetBool("walk", false);
+            audioSource.Stop();
+            _seLastPlayTime = 0f;
+            _seLastPlayTime =- _seWalkInterval;
             return;
         }
 
@@ -166,8 +176,20 @@ public class PlayerController : MonoBehaviour
         _anime.SetBool("walk", true);
 
         _movement = (forward * _moveInputValue.y +right * _moveInputValue.x).normalized;
+        if(Time.time - _seLastPlayTime >= _seWalkInterval)
+        {
+            if (seasonManager != null && seasonManager.CurrentSeason == GlobalSeason.Winter)
+            {
+                audioSource.PlayOneShot(seWalkWinter);
+            }
+            else
+            {
+                audioSource.PlayOneShot(seWalk);
+            }
 
-
+            _seLastPlayTime = Time.time;
+        }
+        
 
         transform.Translate(_movement * _moveSpeed, Space.World);// Translateは今ある場所から移動量分だけ動かす
 

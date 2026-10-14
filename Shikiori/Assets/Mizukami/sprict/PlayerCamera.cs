@@ -173,6 +173,11 @@ public class PlayerCamera : MonoBehaviour
         playerPos.z -= 0.1f;
         playerPos.y += 0.51f;
 
+        // 壁チェック専用の始点を作る。
+        // 上で引いたZの0.1を足して元に戻す（始点が壁側によらないようにする）
+        var castOrigin = playerPos;
+        castOrigin.z += 0.1f;
+
         // 基本的な考え方は、XZ平面の単位円とYZ平面の単位円を組み合わせて、
         // カメラとプレイヤーのオフセットを求める。
 
@@ -196,7 +201,7 @@ public class PlayerCamera : MonoBehaviour
         float targetDistance = _playerCameraDistance;
 
         if (Physics.SphereCast(
-            playerPos,              // 始点(プレイヤー)
+            castOrigin,              // 始点(プレイヤー)
             _collisionRadius,       // 球の半径
             direction,              // カメラへ向かう方向
             out RaycastHit hit,
@@ -206,7 +211,9 @@ public class PlayerCamera : MonoBehaviour
             ))
         {
             // 壁の手前までに縮める(最低距離は確保)
-            targetDistance = Mathf.Max(hit.distance,_minDistance);
+            float sphereDistance = Mathf.Max(hit.distance,_minDistance);
+            // 今の距離より短い時だけ採用する
+            targetDistance = Mathf.Min(targetDistance, sphereDistance);
         }
 
         if (targetDistance < _currentDistance)
