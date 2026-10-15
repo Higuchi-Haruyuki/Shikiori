@@ -180,10 +180,16 @@ public class PlayerController : MonoBehaviour
         {
             if (seasonManager != null && seasonManager.CurrentSeason == GlobalSeason.Winter)
             {
+                audioSource.pitch = 1.5f;
+                audioSource.volume = 1.5f;
+                _seWalkInterval = 6f;
                 audioSource.PlayOneShot(seWalkWinter);
             }
             else
             {
+                audioSource.pitch = 1f;
+                audioSource.volume = 0.44f;
+                _seWalkInterval = 3f;
                 audioSource.PlayOneShot(seWalk);
             }
 
