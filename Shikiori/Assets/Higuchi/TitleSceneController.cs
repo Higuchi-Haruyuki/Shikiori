@@ -100,24 +100,31 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextChoice"",
+                    ""type"": ""Button"",
+                    ""id"": ""77868283-625d-4804-9990-c6eaa3f778cd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousChoice"",
+                    ""type"": ""Button"",
+                    ""id"": ""971c3aac-4268-44ce-92d2-73424145ce3a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""7bd2dfb0-7aa5-43ef-a986-5b9ff02b1bb2"",
-                    ""path"": ""<XInputController>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NextScene"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8ae4172e-930c-4626-b1d9-83021f249425"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -128,7 +135,7 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6749840c-8144-4b44-9d01-cf094d86fa1b"",
-                    ""path"": ""<XboxOneGamepadAndroid>/buttonEast"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -157,6 +164,127 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
                     ""action"": ""NextScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""640f6b7e-8462-42e4-a0df-5bbf3123b897"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86d260f3-07fa-4a7d-8503-295b8b01b9b5"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83ae4128-d4a7-471c-a9df-52c47bf43d68"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ce50dab-00de-45b3-ae2a-9cad61dbdbe6"",
+                    ""path"": ""<XInputController>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextChoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ce37608-5473-4d45-a9f0-5075388a19b9"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextChoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""caee5521-f8be-4b22-81f2-bc30ecc68918"",
+                    ""path"": ""<XInputController>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextChoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b5f1e64-a857-4cfb-a18d-99a16342724f"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextChoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5f4596a-8855-4636-a5b5-d6085a0336f4"",
+                    ""path"": ""<XInputController>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousChoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff3fe391-31a5-40e0-9a1c-34ebfafa1c7d"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousChoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b526f6fe-3520-43e4-89da-0bf5921949bf"",
+                    ""path"": ""<XInputController>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousChoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""872bd012-2d47-4953-8521-0d045203edb0"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousChoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -166,6 +294,8 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_NextScene = m_Player.FindAction("NextScene", throwIfNotFound: true);
+        m_Player_NextChoice = m_Player.FindAction("NextChoice", throwIfNotFound: true);
+        m_Player_PreviousChoice = m_Player.FindAction("PreviousChoice", throwIfNotFound: true);
     }
 
     ~@TitleSceneController()
@@ -247,6 +377,8 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_NextScene;
+    private readonly InputAction m_Player_NextChoice;
+    private readonly InputAction m_Player_PreviousChoice;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -262,6 +394,14 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/NextScene".
         /// </summary>
         public InputAction @NextScene => m_Wrapper.m_Player_NextScene;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/NextChoice".
+        /// </summary>
+        public InputAction @NextChoice => m_Wrapper.m_Player_NextChoice;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/PreviousChoice".
+        /// </summary>
+        public InputAction @PreviousChoice => m_Wrapper.m_Player_PreviousChoice;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -291,6 +431,12 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
             @NextScene.started += instance.OnNextScene;
             @NextScene.performed += instance.OnNextScene;
             @NextScene.canceled += instance.OnNextScene;
+            @NextChoice.started += instance.OnNextChoice;
+            @NextChoice.performed += instance.OnNextChoice;
+            @NextChoice.canceled += instance.OnNextChoice;
+            @PreviousChoice.started += instance.OnPreviousChoice;
+            @PreviousChoice.performed += instance.OnPreviousChoice;
+            @PreviousChoice.canceled += instance.OnPreviousChoice;
         }
 
         /// <summary>
@@ -305,6 +451,12 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
             @NextScene.started -= instance.OnNextScene;
             @NextScene.performed -= instance.OnNextScene;
             @NextScene.canceled -= instance.OnNextScene;
+            @NextChoice.started -= instance.OnNextChoice;
+            @NextChoice.performed -= instance.OnNextChoice;
+            @NextChoice.canceled -= instance.OnNextChoice;
+            @PreviousChoice.started -= instance.OnPreviousChoice;
+            @PreviousChoice.performed -= instance.OnPreviousChoice;
+            @PreviousChoice.canceled -= instance.OnPreviousChoice;
         }
 
         /// <summary>
@@ -352,5 +504,19 @@ public partial class @TitleSceneController: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNextScene(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextChoice" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextChoice(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PreviousChoice" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPreviousChoice(InputAction.CallbackContext context);
     }
 }

@@ -6,20 +6,45 @@ public class TitleScenePlayerInput : MonoBehaviour
 {
     [SerializeField] private SceneLoadSystem _sceneLoadSystem;
     [SerializeField] private AudioClip _pressButtonSound;
+    public int ChoiceIndex {get; private set;} = 0; // 選択肢のインデックスを保持する変数
     private AudioSource _audioSource;
     private TitleSceneController _playerInput;
+
+    enum Choice : int
+    {
+        StartGame = 0,
+        ExitGame = 1
+    }
 
     void OnEnable()
     {
         _playerInput = new TitleSceneController();
         _playerInput.Enable();
 
-        _playerInput.Player.NextScene.started += OnGameStart;
+        _playerInput.Player.NextScene.started += HandleChoiceSelection;
+        _playerInput.Player.NextChoice.performed += (context) => {
+            ChoiceIndex = (ChoiceIndex + 1) % 2; // 選択肢の数に応じて変更
+        };
+        _playerInput.Player.PreviousChoice.performed += (context) => {
+            ChoiceIndex = (ChoiceIndex - 1 + 2) % 2; // 選択肢の数に応じて変更
+        };
     }
 
     void OnDisable()
     {
         _playerInput.Disable();
+    }
+
+    void HandleChoiceSelection(InputAction.CallbackContext context)
+    {
+        if(ChoiceIndex == (int)Choice.StartGame)
+        {
+            OnGameStart(context);
+        }
+        else if(ChoiceIndex == (int)Choice.ExitGame)
+        {
+            Application.Quit();
+        }
     }
 
     void OnGameStart(InputAction.CallbackContext context)

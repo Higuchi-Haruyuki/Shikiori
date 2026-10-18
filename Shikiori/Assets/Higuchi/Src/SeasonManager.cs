@@ -98,10 +98,12 @@ public class SeasonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    #if UNITY_EDITOR
         if(Keyboard.current.enterKey.wasPressedThisFrame)
         {
             ChangeSeason(_seasonTransition[_currentSeason]);
         }
+    #endif
     }
 
     /// <summary>

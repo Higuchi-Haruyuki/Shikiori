@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Game.Attribute;
+using System;
 
 public class SceneLoadSystem : MonoBehaviour
 {
     [SerializeField] FadeScreen _fadeScreen;
     [SerializeField] private string _nextSceneName = "GameScene";
     [SerializeField] private bool _sceneEnd = false;
+
+    public Action OnSceneEnd;
 
     public void EndScene()
     {
@@ -38,14 +41,17 @@ public class SceneLoadSystem : MonoBehaviour
     {
         if(!_fadeScreen) return;
 
+#if UNITY_EDITOR
         // DEBUG用です。F1キーでシーン終了を呼び出す
         if(Keyboard.current.f1Key.wasPressedThisFrame) _sceneEnd = true;
+#endif
 
         // シーン終了フラグが立ってるときにフェードアウトを行う
         if(_sceneEnd)
         {
             if(_fadeScreen.IsFading()) return;
             _fadeScreen.StartFade(0.0f,1.0f);
+            OnSceneEnd?.Invoke();
         }
     }
 
