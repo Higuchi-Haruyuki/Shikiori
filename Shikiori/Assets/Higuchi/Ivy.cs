@@ -57,7 +57,7 @@ public class Ivy : MonoBehaviour,IGimic
         _renderer.enabled = alpha > 0.0f;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         _originalMaterial = _renderer.material;
 

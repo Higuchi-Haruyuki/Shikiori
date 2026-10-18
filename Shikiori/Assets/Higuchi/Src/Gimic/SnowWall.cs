@@ -32,7 +32,8 @@ public class SnowWall : MonoBehaviour, IGimic
         _isFadeIn = true;
         _isFadeOut = false;
         _fadeTimer = 0.0f;
-        _collider.enabled = true;
+        if(_collider)
+            _collider.enabled = true;
     }
 
     void FadeOut()
@@ -40,7 +41,8 @@ public class SnowWall : MonoBehaviour, IGimic
         _isFadeIn = false;
         _isFadeOut = true;
         _fadeTimer = 0.0f;
-        _collider.enabled = false;
+        if(_collider)
+            _collider.enabled = false;
     }
 
     void SetBaseColorAlpha(float alpha)
@@ -58,11 +60,10 @@ public class SnowWall : MonoBehaviour, IGimic
         _renderer.enabled = alpha > 0.0f;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         if(!_collider) _collider = GetComponent<Collider>();
         if(!_renderer) _renderer = GetComponent<Renderer>();
-        if(!_collider) Debug.LogError("SnowWall: Collider がないです。");
         if(!_renderer) Debug.LogError("SnowWall: Renderer がないです。");
         _originalMaterial = _renderer.material;
     }

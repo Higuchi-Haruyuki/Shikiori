@@ -27,6 +27,7 @@ public static class ItemCountMover
             Debug.Log("アイテム数がクリア条件に達しました。");
             OnReachedItemClearCount = null; // イベントを解除して再度発火しないようにする
             OnItemCountChanged = null; // アイテム数変更イベントも解除
+            PlayerPrefs.DeleteKey(ITEM_COUNT_KEY); // アイテム数をリセット
         }
         else
         {

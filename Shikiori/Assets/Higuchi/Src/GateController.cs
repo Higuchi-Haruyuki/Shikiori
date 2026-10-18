@@ -28,11 +28,13 @@ public class GateController : MonoBehaviour
     }
     void Update()
     {
+    #if UNITY_EDITOR
         // DEBUG用
         if (Input.GetKeyDown(KeyCode.F2))
         {
             OpenGate();
         }
+    #endif
 
         if(!_isGateOpening) return;
 

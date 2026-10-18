@@ -11,7 +11,7 @@ public class PondSeasonManager : MonoBehaviour, IGimic
     private bool _isFadeWinter = false;
     private float _fadeTimer = 0.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         _waterFreeze = GetComponent<WaterFreeze>();
     }
