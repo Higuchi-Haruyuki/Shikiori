@@ -168,9 +168,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 114317851261513354}
+  - component: {fileID: 5170913482607714001}
   m_Layer: 0
   m_Name: Tree_A
-  m_TagString: Untagged
+  m_TagString: Gimic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -841,3 +842,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.651021, y: 0.21328855, z: 0.6402081}
   m_Center: {x: -0.00038275123, y: 1.4764012, z: -0.003436163}
+--- !u!114 &5170913482607714001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901686321486715496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee3284873fe4255bddc5c1f1be1af0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _winterSeason: 4
+  _woodRenderer: {fileID: 4401468251394882561}
+  _foliageRenderer: {fileID: 1343370551567936880}
+  _normalWoodMaterials:
+  - {fileID: 2100000, guid: 8c4d8c98fe221e241b58af99daa037bf, type: 2}
+  - {fileID: 2100000, guid: d1fd217e394614942ab5e6ab1a126938, type: 2}
+  _normalFoliageMaterials:
+  - {fileID: 2100000, guid: b49ed40bfe6d21d45ac7ca5fa76d3292, type: 2}
+  - {fileID: 2100000, guid: 6b6dc3c7620e15240a664945f8265a4a, type: 2}
+  _winterWoodMaterials:
+  - {fileID: 2100000, guid: 06ba86786ea0dfc43901931c395d4e53, type: 2}
+  - {fileID: 2100000, guid: 3aa80fde85c26ce41b0854f04e7831ff, type: 2}
+  _winterFoliageMaterials:
+  - {fileID: 2100000, guid: f35849a79a8b4154b86cfd4132225cc5, type: 2}
+  - {fileID: 2100000, guid: f35849a79a8b4154b86cfd4132225cc5, type: 2}

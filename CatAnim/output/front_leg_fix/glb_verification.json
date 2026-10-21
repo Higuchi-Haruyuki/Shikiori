@@ -1,0 +1,12 @@
+{
+  "source_glb_max_surface_error_m": 9.20163256523665e-06,
+  "all_four_clips_present": true,
+  "per_clip_max_surface_error_m": {
+    "Cat_Idle": 7.007514000179071e-07,
+    "Cat_Walk": 5.609253094007727e-06,
+    "Cat_CrouchWalk": 3.6809790344705107e-06,
+    "Cat_Dash": 9.20163256523665e-06
+  },
+  "animation_durations_preserved": true,
+  "limb_weight_separation_verified": true
+}

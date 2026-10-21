@@ -6,7 +6,9 @@ Run inside Blender with: exec(open(filepath, encoding='utf-8').read()).
 """
 
 import math
+import runpy
 from collections import Counter
+from pathlib import Path
 
 import bpy
 from mathutils import Vector
@@ -187,6 +189,28 @@ for vertex in mesh.data.vertices:
 
 rig["rig_stage"] = "ウェイト設定済み・アニメーション未作成"
 mesh["weight_method"] = "Spatial regions, up to four normalized bones per vertex"
+# Keep regenerated weights consistent with the repaired production model.
+script_dir = (Path(__file__).resolve().parent if "__file__" in globals()
+              else Path(bpy.data.filepath).resolve().parents[2] / "scripts")
+face_fix = runpy.run_path(str(script_dir / "fix_cat_face_weights.py"))
+if "face_weight_fix_version" in mesh:
+    del mesh["face_weight_fix_version"]
+print({"face_weight_vertices_changed": face_fix["apply_face_weights"](mesh)})
+leg_fix = runpy.run_path(str(script_dir / "fix_cat_leg_weights.py"))
+if "leg_weight_fix_version" in mesh:
+    del mesh["leg_weight_fix_version"]
+print({"leg_weight_vertices_changed": leg_fix["apply_leg_weights"](mesh)})
+if rig.get('front_leg_anatomy_version') == 1:
+    front_fix = runpy.run_path(str(script_dir / 'fix_cat_front_weights.py'))
+    print({'front_weight_vertices_changed': front_fix['apply_front_weights'](mesh)})
+used = Counter()
+influence_histogram = Counter()
+sums = []
+for vertex in mesh.data.vertices:
+    influence_histogram[len(vertex.groups)] += 1
+    sums.append(sum(g.weight for g in vertex.groups))
+    used.update(mesh.vertex_groups[g.group].name for g in vertex.groups)
+minimum_sum, maximum_sum = min(sums), max(sums)
 print({
     "vertices": len(mesh.data.vertices),
     "weighted_bones": len(used),

@@ -1,0 +1,12 @@
+{
+  "changed_vertices": 6120,
+  "face_vertices": 2056,
+  "before_face_deformation_m": 0.0015288475358719803,
+  "after_face_deformation_m": 1.812804499357408e-07,
+  "face_twitch_m": 0.0,
+  "ear_tip_motion_m": 0.002241150857227601,
+  "animation_unchanged": true,
+  "weights_normalized": true,
+  "max_influences": 4,
+  "lower_body_unchanged": true
+}
