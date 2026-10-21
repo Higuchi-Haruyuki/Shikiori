@@ -18,6 +18,13 @@ public class ItemCollectionState: ScriptableObject
         ItemCountMover.SaveItemCount(_collectedCount);
     }
 
+    // ゲーム開始時に呼んでもらう。合計数を 0 に戻す。
+    // ScriptableObject はシーンをまたいで値が残るので、毎プレイ明示的にリセットする必要がある。
+    public void ResetCount()
+    {
+        _collectedCount = 0;
+    }
+
     // 今の合計数を教えてあげる
     public int CollectedCount => _collectedCount;
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2618306753027452087}
   - component: {fileID: 2006990153401250516}
   - component: {fileID: 2058288865765706960}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ChangeSeasonBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,6 +78,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2618306753027452087}
     m_Modifications:
+    - target: {fileID: -8654874724530219971, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -8615145359382086953, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -7017898702826692703, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -5096656968977711533, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3585227967299095024, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -2697966648475658023, guid: 636d1938904ad5940af67401e2078c83, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -137,6 +157,38 @@ PrefabInstance:
     - target: {fileID: -1045297694113134203, guid: 636d1938904ad5940af67401e2078c83, type: 3}
       propertyPath: m_Name
       value: season_platform_textured
+      objectReference: {fileID: 0}
+    - target: {fileID: -1045297694113134203, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -344753774128647873, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605831166488660066, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867900864738805761, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210119150756212267, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428541938489242135, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852484206209808121, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006790308354394222, guid: 636d1938904ad5940af67401e2078c83, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -7,9 +7,6 @@ public class ResultItemCountController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // デバッグ用にアイテム数を保存してからロードする。
-        ItemCountMover.SaveItemCount(3);
-
         // アイテム数をロードして表示する。
         var result = ItemCountMover.LoadItemCount();
         if (result.IsSuccess)
