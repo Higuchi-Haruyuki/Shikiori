@@ -1,0 +1,44 @@
+{
+  "Front.L": {
+    "stance_slide_m": 2.197113922208782e-05,
+    "stance_floor_error_m": 9.193481877446154e-06
+  },
+  "Front.R": {
+    "stance_slide_m": 2.1956238060838462e-05,
+    "stance_floor_error_m": 9.238767437636831e-06
+  },
+  "Hind.L": {
+    "stance_slide_m": 3.665142434097768e-05,
+    "stance_floor_error_m": 1.596582680940626e-05
+  },
+  "Hind.R": {
+    "stance_slide_m": 3.668122666339313e-05,
+    "stance_floor_error_m": 1.6018795780837515e-05
+  },
+  "paw_edge_length_ratio": [
+    0.9999926838150588,
+    1.0000054647906356
+  ],
+  "leg_edge_length_ratio": [
+    0.5511298785557883,
+    1.720486993366439
+  ],
+  "max_local_joint_rotation_degrees": {
+    "FrontLeg_Upper.L": 30.7673930786445,
+    "FrontLeg_Lower.L": 51.836361498166944,
+    "FrontFoot.L": 31.157260276468826,
+    "FrontLeg_Upper.R": 30.767416984306593,
+    "FrontLeg_Lower.R": 51.83644004534239,
+    "FrontFoot.R": 31.157287597225505,
+    "HindLeg_Upper.L": 24.39449190375327,
+    "HindLeg_Lower.L": 36.78824581314576,
+    "HindFoot.L": 26.563580691683608,
+    "HindLeg_Upper.R": 24.39449190375327,
+    "HindLeg_Lower.R": 36.788310699942876,
+    "HindFoot.R": 26.563609719987582
+  },
+  "loop_error_m": 0.0,
+  "other_action_curves_unchanged": true,
+  "face_weights_unchanged": true,
+  "nominal_speed_mps": 0.20066889632107024
+}

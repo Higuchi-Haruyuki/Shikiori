@@ -1,6 +1,8 @@
 """Create the three in-place locomotion loops specified in model_spec.md."""
 
 import math
+import runpy
+from pathlib import Path
 
 import bpy
 
@@ -152,6 +154,9 @@ created = [
     create_action("Cat_CrouchWalk", "crouch", 32),
     create_action("Cat_Dash", "dash", 16),
 ]
+script_dir = (Path(__file__).resolve().parent if "__file__" in globals()
+              else Path(bpy.data.filepath).resolve().parents[2] / "scripts")
+runpy.run_path(str(script_dir / "rebuild_cat_walk.py"))["rebuild_walk"]()
 rig.animation_data.action = created[0]
 scene.frame_start = 1
 scene.frame_end = 24

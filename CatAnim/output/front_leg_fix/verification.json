@@ -1,0 +1,91 @@
+{
+  "Front.L": {
+    "stance_slide_m": 1.2019206847679875e-05,
+    "stance_floor_error_m": 1.057952269911764e-05
+  },
+  "Front.R": {
+    "stance_slide_m": 1.0955044657090518e-05,
+    "stance_floor_error_m": 1.0546577163040617e-05
+  },
+  "Hind.L": {
+    "stance_slide_m": 3.6666325502171526e-05,
+    "stance_floor_error_m": 1.6006572172045687e-05
+  },
+  "Hind.R": {
+    "stance_slide_m": 3.668122666339313e-05,
+    "stance_floor_error_m": 1.600831840187309e-05
+  },
+  "paw_edge_length_ratio": [
+    0.9999926229733797,
+    1.0000068286854655
+  ],
+  "leg_edge_length_ratio": [
+    0.5368503171544156,
+    1.2957785174324083
+  ],
+  "max_local_joint_rotation_degrees": {
+    "FrontLeg_Upper.L": 23.880342583791393,
+    "FrontLeg_Lower.L": 32.24182942986974,
+    "FrontFoot.L": 18.972235240564636,
+    "FrontLeg_Upper.R": 23.88037673473724,
+    "FrontLeg_Lower.R": 32.241877241193926,
+    "FrontFoot.R": 18.972194259429617,
+    "HindLeg_Upper.L": 24.39449190375327,
+    "HindLeg_Lower.L": 36.78824581314576,
+    "HindFoot.L": 26.563580691683608,
+    "HindLeg_Upper.R": 24.39449190375327,
+    "HindLeg_Lower.R": 36.788310699942876,
+    "HindFoot.R": 26.563609719987582
+  },
+  "loop_error_m": 0.0,
+  "other_action_nonfront_curves_unchanged": true,
+  "face_weights_unchanged": true,
+  "other_action_front_foot_toe_matrix_max_errors": {
+    "Cat_Idle": {
+      "position_m": 3.337203127736024e-08,
+      "rotation_rad": 0.0,
+      "scale": 1.8039638937022157e-06
+    },
+    "Cat_CrouchWalk": {
+      "position_m": 3.725290298461914e-08,
+      "rotation_rad": 0.0,
+      "scale": 2.3276357876976293e-06
+    },
+    "Cat_Dash": {
+      "position_m": 6.143906154658885e-08,
+      "rotation_rad": 0.0,
+      "scale": 2.6656007498500226e-07
+    }
+  },
+  "front_shoulder_y_range": {
+    "L": [
+      -0.21198596060276031,
+      -0.18801401555538177
+    ],
+    "R": [
+      -0.21198596060276031,
+      -0.18801401555538177
+    ]
+  },
+  "front_elbow_y_relative_shoulder": {
+    "L": [
+      0.0330335795879364,
+      0.08058306574821472
+    ],
+    "R": [
+      0.03303365409374237,
+      0.0805831253528595
+    ]
+  },
+  "front_elbow_flex_degrees": {
+    "L": [
+      46.84123925246151,
+      63.03609588780365
+    ],
+    "R": [
+      46.84132462982614,
+      63.03616418969535
+    ]
+  },
+  "nominal_speed_mps": 0.20066889632107024
+}

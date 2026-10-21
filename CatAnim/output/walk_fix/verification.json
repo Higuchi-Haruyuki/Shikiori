@@ -1,0 +1,27 @@
+{
+  "Front.L": {
+    "stance_world_slide_m": 3.285650226186876e-05,
+    "stance_floor_error_m": 9.6596088260412e-06
+  },
+  "Front.R": {
+    "stance_world_slide_m": 3.2781996455871765e-05,
+    "stance_floor_error_m": 9.989995509386042e-06
+  },
+  "Hind.L": {
+    "stance_world_slide_m": 5.021000586225011e-05,
+    "stance_floor_error_m": 1.1908869259059408e-05
+  },
+  "Hind.R": {
+    "stance_world_slide_m": 4.869128350032392e-05,
+    "stance_floor_error_m": 1.1991524137556532e-05
+  },
+  "loop_position_error_m": 0.0,
+  "other_actions_and_weights_unchanged": true,
+  "nominal_speed_mps": 0.24080267558528426,
+  "stance_ratio": 0.65,
+  "frame_range": [
+    1,
+    24
+  ],
+  "fps": 30
+}

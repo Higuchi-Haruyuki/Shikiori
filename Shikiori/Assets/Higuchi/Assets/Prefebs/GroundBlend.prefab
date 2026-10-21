@@ -58,3 +58,4 @@ MonoBehaviour:
     _baseMap: {fileID: 2800000, guid: 14fbfbc2ac452734b90e0d10e040938d, type: 3}
     _normalMap: {fileID: 2800000, guid: a8e9dd707afd4a247bc6ee9b80d9934f, type: 3}
   _blendDuration: 2
+  _publishAsGlobalGrass: 1

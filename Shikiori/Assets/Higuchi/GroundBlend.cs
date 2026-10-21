@@ -16,6 +16,16 @@ public class GroundBlend : MonoBehaviour, IGimic
     [SerializeField] private SeasonTexture[] _seasonTextures;
 
     [SerializeField] private float _blendDuration = 1.0f;
+
+    // 地面用：ONにすると、この季節テクスチャを「草テクスチャ」として全シェーダーに公開する。
+    // 崖のCliffGroundBlendシェーダーがこれを読んで、地面と同じ草を描く。
+    // 地面のGroundBlendだけONにすること（複数ONにすると取り合いになる）。
+    [SerializeField] private bool _publishAsGlobalGrass = false;
+
+    // 崖用：草にする場所を決めるマスク（夏の崖テクスチャ）。
+    // 空のままなら、_seasonTexturesの夏の_baseMapを自動で使う。
+    [SerializeField] private Texture _grassMaskMap;
+
     /*シェーダーのプロパティ名*/
     // 季節テクスチャ（URP Lit）側
     // GroundBlendシェーダー側
@@ -24,6 +34,14 @@ public class GroundBlend : MonoBehaviour, IGimic
     private static readonly int FromNormalMapId = Shader.PropertyToID("_FromNormalMap");
     private static readonly int ToNormalMapId = Shader.PropertyToID("_ToNormalMap");
     private static readonly int BlendId = Shader.PropertyToID("_Blend");
+    // CliffGroundBlendシェーダー側
+    private static readonly int GrassMaskMapId = Shader.PropertyToID("_GrassMaskMap");
+    // 全シェーダー共通（グローバル）
+    private static readonly int GlobalGrassFromMapId = Shader.PropertyToID("_GlobalGrassFromMap");
+    private static readonly int GlobalGrassToMapId = Shader.PropertyToID("_GlobalGrassToMap");
+    private static readonly int GlobalGrassFromNormalMapId = Shader.PropertyToID("_GlobalGrassFromNormalMap");
+    private static readonly int GlobalGrassToNormalMapId = Shader.PropertyToID("_GlobalGrassToNormalMap");
+    private static readonly int GlobalGrassBlendId = Shader.PropertyToID("_GlobalGrassBlend");
 
     // ランタイム用のマテリアル
     private Material _runtimeMaterial;
@@ -38,6 +56,17 @@ public class GroundBlend : MonoBehaviour, IGimic
         {
             renderer.material = _runtimeMaterial;
         }
+
+        // 崖用のマテリアルなら、草にする場所のマスクを渡す
+        if (_runtimeMaterial.HasProperty(GrassMaskMapId))
+        {
+            Texture mask = _grassMaskMap;
+            if (!mask && TryGetSeasonTexture(GlobalSeason.Summer, out SeasonTexture summer))
+            {
+                mask = summer._baseMap;
+            }
+            _runtimeMaterial.SetTexture(GrassMaskMapId, mask);
+        }
     }
 
     private void Update()
@@ -47,6 +76,7 @@ public class GroundBlend : MonoBehaviour, IGimic
         _blendTimer += Time.deltaTime;
         float blend = Mathf.Clamp01(_blendTimer / _blendDuration);
         _runtimeMaterial.SetFloat(BlendId, blend);
+        if (_publishAsGlobalGrass) Shader.SetGlobalFloat(GlobalGrassBlendId, blend);
 
         if (blend >= 1.0f)
         {
@@ -86,6 +116,15 @@ public class GroundBlend : MonoBehaviour, IGimic
         // 新しい季節のテクスチャを To にセットする
         _runtimeMaterial.SetTexture(ToMapId, next._baseMap);
         _runtimeMaterial.SetTexture(ToNormalMapId, next._normalMap);
+
+        // 地面なら、同じテクスチャを崖のシェーダーにも公開する
+        if (_publishAsGlobalGrass)
+        {
+            Shader.SetGlobalTexture(GlobalGrassFromMapId, _runtimeMaterial.GetTexture(FromMapId));
+            Shader.SetGlobalTexture(GlobalGrassToMapId, _runtimeMaterial.GetTexture(ToMapId));
+            Shader.SetGlobalTexture(GlobalGrassFromNormalMapId, _runtimeMaterial.GetTexture(FromNormalMapId));
+            Shader.SetGlobalTexture(GlobalGrassToNormalMapId, _runtimeMaterial.GetTexture(ToNormalMapId));
+        }
     }
 
     /// <summary>
